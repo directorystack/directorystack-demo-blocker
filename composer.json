@@ -1,45 +1,67 @@
 {
-	"name": "directorystack/directorystack-demo-blocker",
-	"license": "",
-	"description": "DirectoryStack addon.",
-	"type": "wordpress-plugin",
-	"keywords": [
-		"wordpress"
-	],
-	"homepage": "https://directorystack.com",
-	"authors": [{
-			"name": "Alessandro Tesoro",
-			"email": "hello@sematico.com",
-			"homepage": "https://alessandrotesoro.me",
-			"role": "Developer"
-		},
-		{
-			"name": "Sematico LTD",
-			"email": "hello@sematico.com",
-			"homepage": "https://sematico",
-			"role": "Founder & MD"
-		}
-	],
-	"require": {
-		"php": ">=5.6",
-		"composer/installers": "~1.0"
-	},
-	"autoload": {
-		"psr-4": {
-			"DirectoryStack\\Blocker\\": "src/"
-		}
-	},
-	"require-dev": {
-		"pressmodo/phpcs-config": "dev-master",
-		"phpunit/phpunit": "^9.0.1",
-		"php-mock/php-mock-phpunit": "^2.5",
-		"10up/wp_mock": "dev-master",
-		"dealerdirect/phpcodesniffer-composer-installer": "^0.7.0"
-	},
-	"scripts": {
-		"lint": "phpcs .",
-		"lint-fix": "phpcbf .",
-		"phpunit": "phpunit",
-		"phpunit-coverage": "phpunit --coverage-text"
-	}
+    "name": "backyardwp/framework",
+    "description": "",
+    "keywords": [
+        "wordpress",
+        "pressmodo",
+        "sematico",
+        "backyard",
+        "framework"
+    ],
+    "homepage": "https://backyard.sematico.com",
+    "license": "GPL-3.0-or-later",
+    "authors": [
+        {
+            "name": "Alessandro Tesoro",
+            "email": "hello@sematico.com",
+            "homepage": "https://sematico.com",
+            "role": "Founder & MD"
+        }
+    ],
+    "support": {
+        "issues": "https://github.com/backyardwp/framework/issues"
+    },
+    "autoload": {
+        "psr-4": {
+            "Backyard\\": "src"
+        }
+    },
+    "autoload-dev": {
+        "psr-4": {
+            "Backyard\\Tests\\": "tests"
+        }
+    },
+    "require": {
+        "php": ">=7.2",
+        "caseyamcl/configula": "^3.1",
+        "illuminate/macroable": "^8.7",
+        "laminas/laminas-diactoros": "^2.5",
+        "laminas/laminas-escaper": "^2.7",
+        "laminas/laminas-form": "^2.15",
+        "laminas/laminas-i18n": "^2.11",
+        "laminas/laminas-view": "^2.11",
+        "league/container": "^3.3",
+        "league/plates": "^3.3",
+        "symfony/finder": "^5.1",
+        "symfony/http-foundation": "^5.1",
+        "twig/twig": "^3.0"
+    },
+    "require-dev": {
+        "dealerdirect/phpcodesniffer-composer-installer": "^0.7.0",
+        "phpunit/phpunit": "^7.0",
+        "symfony/var-dumper": "^5.1",
+        "wp-coding-standards/wpcs": "dev-master"
+    },
+    "config": {
+        "bin-dir": "bin",
+        "sort-packages": true,
+        "preferred-install": {
+            "*": "dist"
+        }
+    },
+    "scripts": {
+        "test": "bin/phpunit"
+    },
+    "minimum-stability": "dev",
+    "prefer-stable": true
 }

@@ -1,12 +1,11 @@
 <?xml version="1.0"?>
 <ruleset name="Pressmodo PHPCS">
 	<description>Pressmodo PHPCS extended.</description>
-	<config name="installed_paths" value="vendor/wp-coding-standards/wpcs,vendor/phpcompatibility/php-compatibility,vendor/phpcompatibility/phpcompatibility-paragonie,vendor/phpcompatibility/phpcompatibility-wp"/>
+	<config name="installed_paths" value="vendor/wp-coding-standards/wpcs"/>
 	<rule ref="vendor/wp-coding-standards/wpcs" />
 
 	<exclude-pattern>*/phpunit.xml*</exclude-pattern>
 	<exclude-pattern>*/languages/*</exclude-pattern>
-	<exclude-pattern>*/tests/*</exclude-pattern>
 
 	<!-- Third-party code -->
 	<exclude-pattern>*/bower-components/*</exclude-pattern>
@@ -44,6 +43,8 @@
 	</rule>
 
 	<rule ref="WordPress-Extra">
+		<exclude name="Generic.Arrays.DisallowShortArraySyntax" />
+
 		<!-- Forget about file names -->
 		<exclude name="WordPress.Files.FileName"/>
 
@@ -56,10 +57,21 @@
 		<!-- Comment punctuation doesn't matter -->
 		<exclude name="Squiz.Commenting.FunctionComment.ParamCommentFullStop"/>
 
+		<exclude name="Squiz.Commenting.VariableComment.Missing"/>
+
 		<exclude name="WordPress.WhiteSpace.ControlStructureSpacing"/>
+
+		<exclude name="Squiz.Commenting.FunctionComment.MissingParamComment"/>
+		<exclude name="Generic.Commenting.DocComment.MissingShort"/>
 
 		<!-- Ignore yoda conditions -->
 		<exclude name="WordPress.PHP.YodaConditions" />
+		<exclude name="WordPress.NamingConventions.ValidVariableName.VariableNotSnakeCase" />
+		<exclude name="WordPress.NamingConventions.ValidVariableName.PropertyNotSnakeCase" />
+		<exclude name="WordPress.NamingConventions.ValidVariableName.UsedPropertyNotSnakeCase" />
+		<exclude name="WordPress.NamingConventions.ValidFunctionName.FunctionNameInvalid" />
+		<exclude name="WordPress.NamingConventions.ValidFunctionName.MethodNameInvalid" />
+
 	</rule>
 
 	<!-- Sets the minimum supported WP version to 4.7, which is over a year old. -->
@@ -82,16 +94,4 @@
 	<!-- Only check the PHP files. -->
 	<arg name="extensions" value="php"/>
 
-	<!-- Check PHP version compatibility. -->
-	<rule ref="PHPCompatibilityWP"/>
-	<config name="testVersion" value="7.0-"/>
-
-	<!-- Set textdomains. -->
-	<rule ref="WordPress.WP.I18n">
-		<properties>
-			<property name="text_domain" type="array">
-				<element value="directorystack-recaptcha"/>
-			</property>
-		</properties>
-	</rule>
 </ruleset>

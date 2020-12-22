@@ -111,9 +111,8 @@ Temporary Items
 node_modules/
 npm-debug.log
 yarn-error.log
-.idea
-dist
-directorystack
-build
 
-directorystack-social-login
+.idea
+
+bin/*
+!bin/install-wp-tests.sh

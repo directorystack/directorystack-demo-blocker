@@ -63,6 +63,7 @@ add_action( 'ds_abuses_before_listing_report_submit', __NAMESPACE__ . '\\trigger
 add_action( 'ds_abuses_before_review_report_submit', __NAMESPACE__ . '\\triggerDisabledException' );
 add_action( 'ds_before_new_conversation', __NAMESPACE__ . '\\triggerDisabledException' );
 add_action( 'ds_before_conversation_reply', __NAMESPACE__ . '\\triggerDisabledException' );
+add_action( 'ds_wc_before_listing_upgrade', __NAMESPACE__ . '\\triggerDisabledException' );
 
 // Prevent reviews from being deleted.
 \add_action(
@@ -146,4 +147,55 @@ add_action(
 			wp_die( 'Access to the WordPress admin panel has been disabled for the purpose of this demo.' );
 		}
 	}
+);
+
+/**
+ * Files cannot be uploaded on this demo.
+ */
+add_filter(
+	'ds_upload_file_pre_upload',
+	function() {
+		return new WP_Error( 'demo-upload', 'Files cannot be uploaded on this demo.' );
+	}
+);
+
+/**
+ * Automatically delete listings after submission.
+ */
+add_action(
+	'woocommerce_thankyou',
+	function( $order_id ) {
+		$order = wc_get_order( $order_id );
+		foreach ( $order->get_items() as $item ) {
+			if ( isset( $item['listing_id'] ) && get_post_type( $item['listing_id'] ) === 'listings' ) {
+				wp_delete_post( $item['listing_id'], true );
+			}
+		}
+	},
+	4
+);
+
+/**
+ * Change the message on the wc thank you page.
+ */
+add_filter(
+	'ds_wc_thank_you_message',
+	function() {
+
+		return 'Your listing has been automatically deleted because this is a demo.';
+
+	}
+);
+
+/**
+ * Prevent listing delete.
+ */
+add_action(
+	'init',
+	function() {
+		if ( isset( $_GET['listing_delete_nonce'] ) ) {
+			wp_die( 'Listings cannot be deleted in this demo.' );
+		}
+	},
+	5
 );

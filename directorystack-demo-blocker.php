@@ -95,3 +95,55 @@ add_action(
 	},
 	9
 );
+
+/**
+ * Prevent comment submission.
+ */
+add_filter(
+	'preprocess_comment',
+	function( $data ) {
+
+		if ( ! is_admin() ) {
+			wp_die( 'This functionality has been disabled for this demo.' );
+		}
+
+		return $data;
+
+	}
+);
+
+/**
+ * Prevent access to wp-login.php
+ *
+ * @return void
+ */
+function ds_prevent_wp_login() {
+
+	global $pagenow;
+
+	$action = ( isset( $_GET['action'] ) ) ? $_GET['action'] : '';
+
+	if ( $pagenow === 'wp-login.php' && ( ! $action || ( $action && ! in_array( $action, array( 'logout', 'lostpassword', 'rp', 'resetpass' ), true ) ) ) ) {
+		$page = wp_login_url();
+		wp_safe_redirect( $page );
+		exit();
+	}
+}
+add_action( 'init', 'ds_prevent_wp_login' );
+
+/**
+ * Disable edits to customer's data on WC checkout.
+ */
+add_filter( 'woocommerce_checkout_update_customer_data', '__return_false' );
+
+/**
+ * Lock access to admin panel.
+ */
+add_action(
+	'admin_init',
+	function() {
+		if ( ! current_user_can( 'manage_options' ) ) {
+			wp_die( 'Access to the WordPress admin panel has been disabled for the purpose of this demo.' );
+		}
+	}
+);

@@ -130,7 +130,7 @@ function ds_prevent_wp_login() {
 		exit();
 	}
 }
-add_action( 'init', 'ds_prevent_wp_login' );
+add_action( 'init', __NAMESPACE__ . '\\ds_prevent_wp_login' );
 
 /**
  * Disable edits to customer's data on WC checkout.

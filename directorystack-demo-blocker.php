@@ -50,12 +50,12 @@ add_action(
 	}
 );
 
-// Disable password recovery.
 add_action( 'directorystack_before_password_recovery', __NAMESPACE__ . '\\triggerDisabledException' );
-
 add_action( 'ds_before_data_erasure_request', __NAMESPACE__ . '\\triggerDisabledException' );
 add_action( 'ds_before_data_export_request', __NAMESPACE__ . '\\triggerDisabledException' );
 add_action( 'directorystack_before_listing_editing', __NAMESPACE__ . '\\triggerDisabledException' );
 add_action( 'directorystack_before_delete_account', __NAMESPACE__ . '\\triggerDisabledException' );
 add_action( 'directorystack_before_password_change', __NAMESPACE__ . '\\triggerDisabledException' );
 add_action( 'directorystack_before_user_update', __NAMESPACE__ . '\\triggerDisabledException' );
+add_action( 'ds_before_claim_submission', __NAMESPACE__ . '\\triggerDisabledException' );
+add_action( 'ds_reviews_before_review_submission', __NAMESPACE__ . '\\triggerDisabledException' );

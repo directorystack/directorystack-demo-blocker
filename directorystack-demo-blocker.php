@@ -59,3 +59,23 @@ add_action( 'directorystack_before_password_change', __NAMESPACE__ . '\\triggerD
 add_action( 'directorystack_before_user_update', __NAMESPACE__ . '\\triggerDisabledException' );
 add_action( 'ds_before_claim_submission', __NAMESPACE__ . '\\triggerDisabledException' );
 add_action( 'ds_reviews_before_review_submission', __NAMESPACE__ . '\\triggerDisabledException' );
+add_action( 'ds_abuses_before_listing_report_submit', __NAMESPACE__ . '\\triggerDisabledException' );
+add_action( 'ds_abuses_before_review_report_submit', __NAMESPACE__ . '\\triggerDisabledException' );
+
+// Prevent reviews from being deleted.
+\add_action(
+	'init',
+	function() {
+		if ( isset( $_GET['delete_review_nonce'] ) ) {
+			wp_die( 'This functionality is disabled for this demo.' );
+		}
+	},
+	9
+);
+
+// prevent login via social networks
+add_action( 'init', function() {
+	if ( isset( $_GET['ds_social'] ) ) {
+		wp_die( 'Due to privacy rules in EU, social login has been disabled for the purpose of this demo.' );
+	}
+}, 9 );

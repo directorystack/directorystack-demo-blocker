@@ -28,6 +28,8 @@
 
 namespace DirectoryStack\Blocker;
 
+use Exception;
+
 defined( 'ABSPATH' ) || exit;
 
 if ( file_exists( dirname( __FILE__ ) . '/vendor/autoload.php' ) ) {
@@ -35,13 +37,11 @@ if ( file_exists( dirname( __FILE__ ) . '/vendor/autoload.php' ) ) {
 }
 
 /**
- * Finally load the addon.
+ * Disable registration.
  */
 add_action(
-	'plugins_loaded',
+	'directorystack_before_registration',
 	function() {
-
-		$plugin = Plugin::instance( __FILE__ );
-
+		throw new Exception( 'Registrations are disabled on this demo. Please login with user: demo & password: testing &mdash; to play around with the demo.' );
 	}
 );

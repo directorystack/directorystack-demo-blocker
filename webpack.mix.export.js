@@ -15,11 +15,11 @@ const rimraf  = require( 'rimraf' );
 const fs      = require( 'fs' );
 
 // Folder name to export the files to.
-let exportPath = 'directorystack-social-login';
+let exportPath = 'directorystack-demo-blocker';
 
 // Plugin root-level files to include.
 let files = [
-	'directorystack-social-login.php',
+	'directorystack-demo-blocker.php',
 	'readme.txt',
 	'uninstall.php',
 ];

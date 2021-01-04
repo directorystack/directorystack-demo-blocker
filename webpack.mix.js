@@ -102,7 +102,7 @@ var sassConfig = {
 };
 
 // Compile SASS/CSS.
-mix.sass( `${devPath}/scss/screen.scss`, 'css', sassConfig );
+//mix.sass( `${devPath}/scss/screen.scss`, 'css', sassConfig );
 
 /*
  * Add custom Webpack configuration.

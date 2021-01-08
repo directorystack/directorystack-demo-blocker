@@ -199,3 +199,17 @@ add_action(
 	},
 	5
 );
+
+/**
+ * Add analytics code.
+ */
+add_action(
+	'wp_head',
+	function() {
+		?>
+	<!-- Fathom - beautiful, simple website analytics -->
+	<script src="https://cdn.usefathom.com/script.js" data-site="SIDHCAKY" defer></script>
+	<!-- / Fathom -->
+		<?php
+	}
+);

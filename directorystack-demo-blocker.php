@@ -213,3 +213,24 @@ add_action(
 		<?php
 	}
 );
+
+/**
+ * Add message about demo account
+ */
+add_action(
+	'directorystack_before_form',
+	function() {
+
+		if ( is_page( ds_get_login_page_id() ) || is_page( ds_get_registration_page_id() ) ) {
+			directorystack()->templates
+			->set_template_data(
+				array(
+					'type'    => 'warning',
+					'message' => esc_html__( 'Login with username "demo" and password "demo" to try a demo account.', 'directorystack' ),
+				)
+			)
+			->get_template_part( 'message' );
+		}
+
+	}
+);
